@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import HeroDetailComponent from './hero-detail.component';
 import HeroService from './hero.service';
-import * as styles from 'stylesheets/style.scss';
 import {Router} from 'angular2/router';
 
 @Component({
@@ -9,11 +8,11 @@ import {Router} from 'angular2/router';
     template: `
 
         <h2>My Heroes</h2>
-        <ul class="{{styles.heroes}}">
+        <ul class="heroes">
             <li *ngFor="let hero of heroes"
                     (click)="onSelect(hero)"
-                    class="{{hero === selectedHero?styles.selected:null}}">
-                 <span class="{{styles.badge}}">{{hero.id}}</span> {{hero.name}}
+                    [class.selected]="hero === selectedHero">
+                 <span class="badge">{{hero.id}}</span> {{hero.name}}
             </li>
         </ul>
         <button (click)="addHero()">Add new Hero</button>
@@ -28,14 +27,13 @@ import {Router} from 'angular2/router';
             <button (click)="gotoDetail()">View Details</button>
         </div>
     `,
-    syles: [styles.toString()],
+    syles: [require('stylesheets/style.scss').toString()],
     directives: [HeroDetailComponent]
 })
 export default class HeroesComponent{
     constructor(heroService, router) {
         this.title = 'Tour of Heros';
         this.heroService = heroService;
-        this.styles = styles;
         this.router = router;
     }
     addHero() {

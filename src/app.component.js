@@ -4,7 +4,7 @@ import HeroesComponent from './heroes.component';
 import DashboardComponent from './dashboard.component';
 import HeroDetailComponent from './hero-detail.component';
 import HeroService from './hero.service';
-console.log(ROUTER_PROVIDERS);
+
 @Component({
     selector: 'my-app',
     template: `
